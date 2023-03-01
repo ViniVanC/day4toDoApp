@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: none;
+}
+
+#root {
+  min-height: 100vh;
+  background: linear-gradient(207deg, #d45769 0%, #308695 100%);
+  color: #f0ffff;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+}
+
+.App {
+  padding: 50px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.todo-add-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  input {
+    background: transparent;
+    padding: 10px;
+    font-size: 20px;
+    color: #f0ffff;
+
+    &::placeholder {
+      color: #f0ffff;
+    }
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    font-size: 25px;
+    color: #f0ffff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    @media (min-width: 768px) {
+      &:hover {
+        color: #c6c7c7;
+      }
+    }
+  }
+}
+
+.todo-list {
+  max-width: max-content;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 20px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  &.checked {
+    .todo-item__checkbox {
+      border-color: #c6c7c7;
+      background: #c6c7c7;
+    }
+
+    .todo-item__text {
+      color: #c6c7c7;
+      &::before {
+        width: 107%;
+      }
+    }
+
+    .todo-item__delete-btn {
+      color: #c6c7c7;
+
+      @media (min-width: 768px) {
+        &:hover {
+          color: #ff6347;
+        }
+      }
+    }
+  }
+
+  &__checkbox {
+    width: 25px;
+    height: 25px;
+    border: 3px solid #f0ffff;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    @media (min-width: 768px) {
+      &:hover {
+        border-color: #c6c7c7;
+      }
+    }
+  }
+
+  &__text {
+    font-size: 18px;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 3px;
+      border-radius: 10px;
+      top: 50%;
+      left: -5px;
+      transform: translateY(-50%);
+      background: #c6c7c7;
+
+      transition: all 0.2s ease-in-out;
+    }
+  }
+
+  &__delete-btn {
+    background-color: transparent;
+    color: #f0ffff;
+    font-size: 20px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+    @media (min-width: 768px) {
+      &:hover {
+        color: #ff6347;
+      }
+    }
+  }
+}
