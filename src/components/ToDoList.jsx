@@ -1,11 +1,10 @@
 import React from "react";
+import { useTodo } from "../hooks/useTodo";
 import { ToDoItem } from "./ToDoItem";
 
-export const ToDoList = ({
-  todo,
-  onPerformedToDoItem = (f) => f,
-  onDeleteToDoItem = (f) => f,
-}) => {
+export const ToDoList = () => {
+  const { todo } = useTodo();
+
   return (
     <div className="todo-list">
       {todo?.map((item) => (
@@ -14,8 +13,6 @@ export const ToDoList = ({
           id={item.id}
           text={item.text}
           status={item.status}
-          onPerformedToDoItem={onPerformedToDoItem}
-          onDeleteToDoItem={onDeleteToDoItem}
         />
       ))}
     </div>

@@ -1,7 +1,10 @@
 import React from "react";
 import { FaPlus } from "react-icons/fa";
+import { useTodo } from "../hooks/useTodo";
 
-export const ToDoAddItem = ({ change, setChange, onAddToDoItem }) => {
+export const ToDoAddItem = () => {
+  const { change, setChange, onAddToDoItem } = useTodo();
+
   return (
     <form className="todo-add-item" onSubmit={onAddToDoItem}>
       <input
