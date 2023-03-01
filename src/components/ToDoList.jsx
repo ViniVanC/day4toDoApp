@@ -13,6 +13,7 @@ export const ToDoList = () => {
           id={item.id}
           text={item.text}
           status={item.status}
+          change={item.change}
         />
       ))}
     </div>

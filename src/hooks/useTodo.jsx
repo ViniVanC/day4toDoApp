@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { v4 } from "uuid";
 
 const ToDoContext = createContext();
@@ -18,10 +12,6 @@ export const ToDoProvider = ({ children }) => {
 
   const [change, setChange] = useState(""); // зберігає введені у ToDoAddItem дані
   const [newText, setNewText] = useState(""); // зберігається новий текст коли користувач хоче змінити завдання
-  const [closeChangedBubble, setCloseChangedBubble] = useReducer(
-    (closeChangedBubble) => !closeChangedBubble,
-    true
-  ); // відкриває та закриває бульбашку зміни завдання
 
   // оновлює localStorage, якщо змінився масив todo
   useEffect(() => {
@@ -33,12 +23,14 @@ export const ToDoProvider = ({ children }) => {
     e.preventDefault();
 
     if (change !== "") {
-      setTodo([...todo, { id: v4(), status: false, text: change }]);
+      setTodo([
+        ...todo,
+        { id: v4(), status: false, text: change, change: false },
+      ]);
     }
 
     setChange("");
   };
-
   // функція спрацює якщо користувач відмітив задачу як виконану
   const onPerformedToDoItem = (id) => {
     setTodo(
@@ -48,16 +40,28 @@ export const ToDoProvider = ({ children }) => {
     );
   };
 
+  // відкриває бульбашку
+  const onOpenChangedBubble = (id) => {
+    setTodo(
+      todo.map((item) =>
+        item.id === id ? { ...item, change: !item.change } : item
+      )
+    );
+  };
+
   // функція для зміни завдання
   const onChangedToDoItem = (id) => {
     if (newText !== "") {
       setTodo(
-        todo.map((item) => (item.id === id ? { ...item, text: newText } : item))
+        todo.map((item) =>
+          item.id === id
+            ? { ...item, change: !item.change, text: newText }
+            : item
+        )
       );
     }
 
     setNewText("");
-    setCloseChangedBubble();
   };
 
   // функція видалення завдання
@@ -74,8 +78,7 @@ export const ToDoProvider = ({ children }) => {
         setChange,
         newText,
         setNewText,
-        closeChangedBubble,
-        setCloseChangedBubble,
+        onOpenChangedBubble,
         onAddToDoItem,
         onPerformedToDoItem,
         onChangedToDoItem,

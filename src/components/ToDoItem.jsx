@@ -3,8 +3,8 @@ import { FaPen, FaTrash } from "react-icons/fa";
 import { useTodo } from "../hooks/useTodo";
 import { ToDoChangeItem } from "./ToDoChangeItem";
 
-export const ToDoItem = ({ id, text, status }) => {
-  const { onPerformedToDoItem, onDeleteToDoItem, setCloseChangedBubble } =
+export const ToDoItem = ({ id, text, status, change }) => {
+  const { onPerformedToDoItem, onDeleteToDoItem, onOpenChangedBubble } =
     useTodo();
 
   return (
@@ -18,7 +18,10 @@ export const ToDoItem = ({ id, text, status }) => {
       </p>
 
       <div className="btn-box">
-        <button className="todo-item__btn" onClick={setCloseChangedBubble}>
+        <button
+          className="todo-item__btn"
+          onClick={() => onOpenChangedBubble(id)}
+        >
           <FaPen />
         </button>
         <button
@@ -29,7 +32,7 @@ export const ToDoItem = ({ id, text, status }) => {
         </button>
       </div>
 
-      <ToDoChangeItem id={id} />
+      <ToDoChangeItem id={id} change={change} />
     </div>
   );
 };
