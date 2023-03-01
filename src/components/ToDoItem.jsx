@@ -16,15 +16,19 @@ export const ToDoItem = ({ id, text, status }) => {
       <p className="todo-item__text" onClick={() => onPerformedToDoItem(id)}>
         {text}
       </p>
-      <button className="todo-item__btn" onClick={setCloseChangedBubble}>
-        <FaPen />
-      </button>
-      <button
-        className="todo-item__btn todo-item__delete-btn"
-        onClick={() => onDeleteToDoItem(id)}
-      >
-        <FaTrash />
-      </button>
+
+      <div className="btn-box">
+        <button className="todo-item__btn" onClick={setCloseChangedBubble}>
+          <FaPen />
+        </button>
+        <button
+          className="todo-item__btn todo-item__delete-btn"
+          onClick={() => onDeleteToDoItem(id)}
+        >
+          <FaTrash />
+        </button>
+      </div>
+
       <ToDoChangeItem id={id} />
     </div>
   );

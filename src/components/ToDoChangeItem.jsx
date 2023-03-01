@@ -16,7 +16,7 @@ export const ToDoChangeItem = ({ id }) => {
     <div className={`todo-change-item ${closeChangedBubble ? "close" : ""}`}>
       <input
         type="text"
-        placeholder="Enter the task..."
+        placeholder="Change this task..."
         value={newText}
         onChange={(e) => setNewText(e.target.value)}
       />

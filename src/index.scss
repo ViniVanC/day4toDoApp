@@ -8,6 +8,7 @@
 }
 
 #root {
+  overflow: hidden;
   min-height: 100vh;
   background: linear-gradient(207deg, #d45769 0%, #308695 100%);
   color: #f0ffff;
@@ -16,7 +17,7 @@
 }
 
 .App {
-  padding: 50px 0;
+  padding: 50px 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,6 +35,8 @@
   gap: 20px;
 
   input {
+    max-width: 300px;
+    width: 100%;
     background: transparent;
     padding: 10px;
     font-size: 20px;
@@ -64,6 +67,7 @@
 
 .todo-list {
   max-width: max-content;
+  width: 100%;
   display: flex;
   flex-direction: column-reverse;
   gap: 20px;
@@ -111,7 +115,7 @@
   }
 
   &__checkbox {
-    width: 25px;
+    flex: 0 0 25px;
     height: 25px;
     border: 3px solid #f0ffff;
     border-radius: 50%;
@@ -170,6 +174,12 @@
   }
 }
 
+.btn-box {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
 .todo-change-item {
   position: absolute;
   bottom: 180%;
@@ -179,7 +189,8 @@
   border-radius: 10px;
   background-color: rgba($color: #f0ffff, $alpha: 0.2);
   backdrop-filter: blur(10px);
-
+  max-width: 300px;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -203,6 +214,7 @@
   }
 
   input {
+    width: 100%;
     background: transparent;
     padding: 5px;
     font-size: 16px;
